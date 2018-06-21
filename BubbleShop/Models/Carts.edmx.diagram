@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b981e40198c94deda36010423b9f4473" Name="Diagram1">
+        <EntityTypeShape EntityType="CartsModel.Category" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.OrderLine" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.Order" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.ProductAsset" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.ProductAttribute" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.ProductCategory" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.ProductPrice" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.Product" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.UserAddress" Width="1.5" PointX="1.5" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.UserPaymentMethod" Width="1.5" PointX="3.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CartsModel.User" Width="1.5" PointX="1.5" PointY="26.375" IsExpanded="true" />
+        <AssociationConnector Association="CartsModel.FK_CategoryCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_OrderLineProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_OrderOrderLine" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_OrderUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_OrderUserAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_ProductAssetProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_ProductAttributeProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_ProductProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_ProductPriceProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_UserUserAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.FK_UserUserPaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="CartsModel.ProductCategoryCategory" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
