@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="CartsModelStoreContainer" CdmEntityContainer="CartsEntities">
     <EntitySetMapping Name="Categories">
-      <EntityTypeMapping TypeName="CartsModel.Category">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.Category)">
         <MappingFragment StoreEntitySet="Categories">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -15,7 +15,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderLines">
-      <EntityTypeMapping TypeName="CartsModel.OrderLine">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.OrderLine)">
         <MappingFragment StoreEntitySet="OrderLines">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
@@ -30,7 +30,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="CartsModel.Order">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.Order)">
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="OrderNum" ColumnName="OrderNum" />
@@ -46,7 +46,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductAssets">
-      <EntityTypeMapping TypeName="CartsModel.ProductAsset">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.ProductAsset)">
         <MappingFragment StoreEntitySet="ProductAssets">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Size" ColumnName="Size" />
@@ -59,7 +59,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductAttributes">
-      <EntityTypeMapping TypeName="CartsModel.ProductAttribute">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.ProductAttribute)">
         <MappingFragment StoreEntitySet="ProductAttributes">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -70,7 +70,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductCategories">
-      <EntityTypeMapping TypeName="CartsModel.ProductCategory">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.ProductCategory)">
         <MappingFragment StoreEntitySet="ProductCategories">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProductName_D" ColumnName="ProductName_D" />
@@ -81,7 +81,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductPrices">
-      <EntityTypeMapping TypeName="CartsModel.ProductPrice">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.ProductPrice)">
         <MappingFragment StoreEntitySet="ProductPrices">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Price" ColumnName="Price" />
@@ -93,7 +93,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="CartsModel.Product">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.Product)">
         <MappingFragment StoreEntitySet="Products">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -107,7 +107,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserAddresses">
-      <EntityTypeMapping TypeName="CartsModel.UserAddress">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.UserAddress)">
         <MappingFragment StoreEntitySet="UserAddresses">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Type" ColumnName="Type" />
@@ -125,7 +125,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserPaymentMethods">
-      <EntityTypeMapping TypeName="CartsModel.UserPaymentMethod">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.UserPaymentMethod)">
         <MappingFragment StoreEntitySet="UserPaymentMethods">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Type" ColumnName="Type" />
@@ -140,7 +140,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="CartsModel.User">
+      <EntityTypeMapping TypeName="IsTypeOf(CartsModel.User)">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FName" ColumnName="FName" />

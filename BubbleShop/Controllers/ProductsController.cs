@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -75,6 +76,7 @@ namespace BubbleShop.Controllers
         [ResponseType(typeof(Product))]
         public async Task<IHttpActionResult> PostProduct(Product product)
         {
+            //Debug.WriteLine("<<<<<<<<<<<<<");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

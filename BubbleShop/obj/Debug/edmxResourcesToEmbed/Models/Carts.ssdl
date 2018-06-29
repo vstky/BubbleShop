@@ -1,16 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="CartsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="CartsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CartsModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="CartsModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderLines" EntityType="CartsModel.Store.OrderLines" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Orders" EntityType="CartsModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductAssets" EntityType="CartsModel.Store.ProductAssets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductAttributes" EntityType="CartsModel.Store.ProductAttributes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductCategories" EntityType="CartsModel.Store.ProductCategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductPrices" EntityType="CartsModel.Store.ProductPrices" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="CartsModel.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserAddresses" EntityType="CartsModel.Store.UserAddresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserPaymentMethods" EntityType="CartsModel.Store.UserPaymentMethods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="CartsModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductCategoryCategory" EntityType="CartsModel.Store.ProductCategoryCategory" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CategoryCategory" Association="CartsModel.Store.FK_CategoryCategory">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Categories1" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLineProduct" Association="CartsModel.Store.FK_OrderLineProduct">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OrderLines" EntitySet="OrderLines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderOrderLine" Association="CartsModel.Store.FK_OrderOrderLine">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderLines" EntitySet="OrderLines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderUser" Association="CartsModel.Store.FK_OrderUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderUserAddress" Association="CartsModel.Store.FK_OrderUserAddress">
+      <End Role="UserAddresses" EntitySet="UserAddresses" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAssetProduct" Association="CartsModel.Store.FK_ProductAssetProduct">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductAssets" EntitySet="ProductAssets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAttributeProduct" Association="CartsModel.Store.FK_ProductAttributeProduct">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductAttributes" EntitySet="ProductAttributes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductProductCategory" Association="CartsModel.Store.FK_ProductProductCategory">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPriceProduct" Association="CartsModel.Store.FK_ProductPriceProduct">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductPrices" EntitySet="ProductPrices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUserAddress" Association="CartsModel.Store.FK_UserUserAddress">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserAddresses" EntitySet="UserAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUserPaymentMethod" Association="CartsModel.Store.FK_UserUserPaymentMethod">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserPaymentMethods" EntitySet="UserPaymentMethods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategoryCategory_Categories" Association="CartsModel.Store.FK_ProductCategoryCategory_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="ProductCategoryCategory" EntitySet="ProductCategoryCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategoryCategory_ProductCategories" Association="CartsModel.Store.FK_ProductCategoryCategory_ProductCategories">
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+      <End Role="ProductCategoryCategory" EntitySet="ProductCategoryCategory" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Categories">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
     <Property Name="ParentCategoryId" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IconImage" Type="nvarchar(max)" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
-    <Property Name="CategoryId" Type="int" />
+    <Property Name="IconImage" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
+    <Property Name="CategoryId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="OrderLines">
     <Key>
@@ -22,7 +88,7 @@
     <Property Name="Price" Type="smallint" Nullable="false" />
     <Property Name="DiscountAmount" Type="smallint" Nullable="false" />
     <Property Name="LineTotalAmount" Type="smallint" Nullable="false" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
     <Property Name="OrderId" Type="int" Nullable="false" />
     <Property Name="Product_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -37,7 +103,7 @@
     <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TotalAmount" Type="smallint" Nullable="false" />
     <Property Name="CreatedOn" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="UserAddress_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -49,8 +115,8 @@
     <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ImageUri" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Label" Type="nvarchar(max)" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Label" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
     <Property Name="Product_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductAttributes">
@@ -60,7 +126,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
     <Property Name="Product_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductCategories">
@@ -68,28 +134,20 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProductName_D" Type="nvarchar(max)" />
-    <Property Name="CategoryName_D" Type="nvarchar(max)" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="ProductName_D" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CategoryName_D" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
     <Property Name="ProductId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ProductCategoryCategory">
-    <Key>
-      <PropertyRef Name="ProductCategories_Id" />
-      <PropertyRef Name="Categories_Id" />
-    </Key>
-    <Property Name="ProductCategories_Id" Type="int" Nullable="false" />
-    <Property Name="Categories_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductPrices">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="EffectiveFrom" Type="time" Precision="7" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="EffectiveFrom" Type="time" Nullable="false" Precision="7" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
     <Property Name="Product_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Products">
@@ -100,10 +158,10 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Manufacturer" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Brand" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
     <Property Name="ProductCode" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Status" Type="nvarchar(max)" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
   </EntityType>
   <EntityType Name="UserAddresses">
     <Key>
@@ -113,12 +171,12 @@
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AddressLine1" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="AddressLine2" Type="nvarchar(max)" />
+    <Property Name="AddressLine2" Type="nvarchar(max)" Nullable="true" />
     <Property Name="City" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ZipCode" Type="smallint" Nullable="false" />
     <Property Name="State" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
     <Property Name="OrderId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
@@ -128,12 +186,12 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Identifier" Type="nvarchar(max)" />
-    <Property Name="Expiry" Type="nvarchar(max)" />
+    <Property Name="Identifier" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Expiry" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="BillingAddress" Type="nvarchar(max)" />
+    <Property Name="BillingAddress" Type="nvarchar(max)" Nullable="true" />
     <Property Name="CreatedOn" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
     <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
@@ -146,14 +204,22 @@
     <Property Name="LoginId" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Cellphone" Type="nvarchar(max)" />
+    <Property Name="Cellphone" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastUpdated" Type="time" Precision="7" Nullable="false" />
+    <Property Name="LastUpdated" Type="time" Nullable="false" Precision="7" />
+  </EntityType>
+  <EntityType Name="ProductCategoryCategory">
+    <Key>
+      <PropertyRef Name="Categories_Id" />
+      <PropertyRef Name="ProductCategories_Id" />
+    </Key>
+    <Property Name="Categories_Id" Type="int" Nullable="false" />
+    <Property Name="ProductCategories_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_CategoryCategory">
-    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
-    <End Role="Categories1" Type="Self.Categories" Multiplicity="*" />
+    <End Role="Categories" Type="CartsModel.Store.Categories" Multiplicity="0..1" />
+    <End Role="Categories1" Type="CartsModel.Store.Categories" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Categories">
         <PropertyRef Name="Id" />
@@ -164,8 +230,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderLineProduct">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
+    <End Role="Products" Type="CartsModel.Store.Products" Multiplicity="1" />
+    <End Role="OrderLines" Type="CartsModel.Store.OrderLines" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
         <PropertyRef Name="Id" />
@@ -176,8 +242,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderOrderLine">
-    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-    <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
+    <End Role="Orders" Type="CartsModel.Store.Orders" Multiplicity="1" />
+    <End Role="OrderLines" Type="CartsModel.Store.OrderLines" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Orders">
         <PropertyRef Name="Id" />
@@ -188,8 +254,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderUser">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <End Role="Users" Type="CartsModel.Store.Users" Multiplicity="1" />
+    <End Role="Orders" Type="CartsModel.Store.Orders" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="Id" />
@@ -200,8 +266,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderUserAddress">
-    <End Role="UserAddresses" Type="Self.UserAddresses" Multiplicity="1" />
-    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <End Role="UserAddresses" Type="CartsModel.Store.UserAddresses" Multiplicity="1" />
+    <End Role="Orders" Type="CartsModel.Store.Orders" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserAddresses">
         <PropertyRef Name="Id" />
@@ -212,8 +278,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductAssetProduct">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="ProductAssets" Type="Self.ProductAssets" Multiplicity="*" />
+    <End Role="Products" Type="CartsModel.Store.Products" Multiplicity="1" />
+    <End Role="ProductAssets" Type="CartsModel.Store.ProductAssets" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
         <PropertyRef Name="Id" />
@@ -224,8 +290,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductAttributeProduct">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="ProductAttributes" Type="Self.ProductAttributes" Multiplicity="*" />
+    <End Role="Products" Type="CartsModel.Store.Products" Multiplicity="1" />
+    <End Role="ProductAttributes" Type="CartsModel.Store.ProductAttributes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
         <PropertyRef Name="Id" />
@@ -235,45 +301,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ProductCategoryCategory_Category">
-    <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
-    <End Role="ProductCategoryCategory" Type="Self.ProductCategoryCategory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Categories">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductCategoryCategory">
-        <PropertyRef Name="Categories_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductCategoryCategory_ProductCategory">
-    <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="1" />
-    <End Role="ProductCategoryCategory" Type="Self.ProductCategoryCategory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProductCategories">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductCategoryCategory">
-        <PropertyRef Name="ProductCategories_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductPriceProduct">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="ProductPrices" Type="Self.ProductPrices" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductPrices">
-        <PropertyRef Name="Product_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ProductProductCategory">
-    <End Role="Products" Type="Self.Products" Multiplicity="1" />
-    <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="*" />
+    <End Role="Products" Type="CartsModel.Store.Products" Multiplicity="1" />
+    <End Role="ProductCategories" Type="CartsModel.Store.ProductCategories" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
         <PropertyRef Name="Id" />
@@ -283,9 +313,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ProductPriceProduct">
+    <End Role="Products" Type="CartsModel.Store.Products" Multiplicity="1" />
+    <End Role="ProductPrices" Type="CartsModel.Store.ProductPrices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductPrices">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserUserAddress">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="UserAddresses" Type="Self.UserAddresses" Multiplicity="*" />
+    <End Role="Users" Type="CartsModel.Store.Users" Multiplicity="1" />
+    <End Role="UserAddresses" Type="CartsModel.Store.UserAddresses" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="Id" />
@@ -296,8 +338,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserUserPaymentMethod">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="UserPaymentMethods" Type="Self.UserPaymentMethods" Multiplicity="*" />
+    <End Role="Users" Type="CartsModel.Store.Users" Multiplicity="1" />
+    <End Role="UserPaymentMethods" Type="CartsModel.Store.UserPaymentMethods" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="Id" />
@@ -307,70 +349,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CartsModelStoreContainer">
-    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="OrderLines" EntityType="Self.OrderLines" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ProductAssets" EntityType="Self.ProductAssets" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ProductAttributes" EntityType="Self.ProductAttributes" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ProductCategoryCategory" EntityType="Self.ProductCategoryCategory" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ProductPrices" EntityType="Self.ProductPrices" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserAddresses" EntityType="Self.UserAddresses" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserPaymentMethods" EntityType="Self.UserPaymentMethods" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_CategoryCategory" Association="Self.FK_CategoryCategory">
-      <End Role="Categories" EntitySet="Categories" />
-      <End Role="Categories1" EntitySet="Categories" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderLineProduct" Association="Self.FK_OrderLineProduct">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="OrderLines" EntitySet="OrderLines" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderOrderLine" Association="Self.FK_OrderOrderLine">
-      <End Role="Orders" EntitySet="Orders" />
-      <End Role="OrderLines" EntitySet="OrderLines" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderUser" Association="Self.FK_OrderUser">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Orders" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderUserAddress" Association="Self.FK_OrderUserAddress">
-      <End Role="UserAddresses" EntitySet="UserAddresses" />
-      <End Role="Orders" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductAssetProduct" Association="Self.FK_ProductAssetProduct">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="ProductAssets" EntitySet="ProductAssets" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductAttributeProduct" Association="Self.FK_ProductAttributeProduct">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="ProductAttributes" EntitySet="ProductAttributes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductCategoryCategory_Category" Association="Self.FK_ProductCategoryCategory_Category">
-      <End Role="Categories" EntitySet="Categories" />
-      <End Role="ProductCategoryCategory" EntitySet="ProductCategoryCategory" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductCategoryCategory_ProductCategory" Association="Self.FK_ProductCategoryCategory_ProductCategory">
-      <End Role="ProductCategories" EntitySet="ProductCategories" />
-      <End Role="ProductCategoryCategory" EntitySet="ProductCategoryCategory" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductPriceProduct" Association="Self.FK_ProductPriceProduct">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="ProductPrices" EntitySet="ProductPrices" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductProductCategory" Association="Self.FK_ProductProductCategory">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="ProductCategories" EntitySet="ProductCategories" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserUserAddress" Association="Self.FK_UserUserAddress">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="UserAddresses" EntitySet="UserAddresses" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserUserPaymentMethod" Association="Self.FK_UserUserPaymentMethod">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="UserPaymentMethods" EntitySet="UserPaymentMethods" />
-    </AssociationSet>
-  </EntityContainer>
+  <Association Name="FK_ProductCategoryCategory_Categories">
+    <End Role="Categories" Type="CartsModel.Store.Categories" Multiplicity="1" />
+    <End Role="ProductCategoryCategory" Type="CartsModel.Store.ProductCategoryCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductCategoryCategory">
+        <PropertyRef Name="Categories_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCategoryCategory_ProductCategories">
+    <End Role="ProductCategoryCategory" Type="CartsModel.Store.ProductCategoryCategory" Multiplicity="*" />
+    <End Role="ProductCategories" Type="CartsModel.Store.ProductCategories" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductCategoryCategory">
+        <PropertyRef Name="ProductCategories_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
